@@ -1,18 +1,18 @@
-#     ___ ___ _  _ ___ ___    _ _____ ___ ___         
-#    / __| __| \| | __| _ \  /_\_   _| __|   \        
-#   | (_ | _|| .` | _||   / / _ \| | | _|| |) |       
-#    \___|___|_|\_|___|_|_\/_/_\_\_|_|___|___/_ _____ 
+#     ___ ___ _  _ ___ ___    _ _____ ___ ___
+#    / __| __| \| | __| _ \  /_\_   _| __|   \
+#   | (_ | _|| .` | _||   / / _ \| | | _|| |) |
+#    \___|___|_|\_|___|_|_\/_/_\_\_|_|___|___/_ _____
 #   |   \ / _ \  | \| |/ _ \_   _| | __|   \_ _|_   _|
-#   | |) | (_) | | .` | (_) || |   | _|| |) | |  | |  
-#   |___/ \___/  |_|\_|\___/ |_|   |___|___/___| |_|  
-# 
+#   | |) | (_) | | .` | (_) || |   | _|| |) | |  | |
+#   |___/ \___/  |_|\_|\___/ |_|   |___|___/___| |_|
+#
 
 FROM centos:centos7
 
 # Pause indefinitely if asked to do so.
 RUN test "$OO_PAUSE_ON_BUILD" = "true" && while sleep 10; do true; done || :
 
-
+RUN yum -y install centos-release-openshift-origin && yum clean all
 ADD copr-openshift-tools.repo /etc/yum.repos.d/
 
 # creature comforts (make it feel like a normal linux environment)
