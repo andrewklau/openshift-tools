@@ -75,10 +75,7 @@
   - name: Save scriptrunner's ssh key
     copy:
       content: >
-        {% set rsa_key = "" %}
-        {%- set key_name = "g_user_" + g_zbx_actions_config.zbx_scriptrunner_user %}
-        {%- set rsa_key = hostvars["localhost"][key_name]["priv_key"] %}
-        {{- rsa_key -}}
+        {{- g_user_scriptrunner_priv_key -}}
       dest: "{{ g_rsa_key_file }}"
       mode: "400"
 
@@ -132,4 +129,3 @@
     with_items:
     - key: Server
       value: "{{ g_hostname }}"
-
